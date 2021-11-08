@@ -1,6 +1,7 @@
 ﻿const { start } = require('./bot.js')
 const config = require('./config')
-require('dotenv').config()
+const dotenv = require('dotenv')
+dotenv.config()
 
 
 console.log(config.BOT_TOKEN)
