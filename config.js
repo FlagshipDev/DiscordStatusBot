@@ -3,8 +3,8 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 module.exports = {
-    URL_SERVER_FIVEM: process.env.URL_SERVER_FIVEM,
-    URL_SERVER_REDM: process.env.URL_SERVER_REDM,
+    URL_SERVER_FIVEM: "http://104.251.211.216:30120",
+    URL_SERVER_REDM: "http://104.251.211.216:30160",
     MAX_PLAYERS_FIVEM: process.env.MAX_PLAYERS_FIVEM,
     MAX_PLAYERS_REDM: process.env.MAX_PLAYERS_REDM,
     LOG_LEVEL: process.env.LOG_LEVEL,

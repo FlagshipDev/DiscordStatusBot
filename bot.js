@@ -46,11 +46,8 @@ const BOT_CONFIG = {
 const USER_AGENT = `Flagship bot ${require('./package.json').version} , Node ${process.version} (${process.platform}${process.arch})`;
 
 exports.start = function() {
-  const URL_SERVER_FIVEM = config.URL_SERVER_FIVEM;
-  const URL_SERVER_REDM = config.URL_SERVER_REDM;
-
-  const URL_PLAYERS_FIVEM = new URL('/players.json', URL_SERVER_FIVEM).toString();
-  const URL_PLAYERS_REDM = new URL('/players.json', URL_SERVER_REDM).toString();
+  const URL_PLAYERS_FIVEM = new URL('/players.json',config.URL_SERVER_FIVEM).toString();
+  const URL_PLAYERS_REDM = new URL('/players.json',config.URL_SERVER_REDM).toString();
   const URL_INFO_FIVEM = new URL('/info.json', URL_SERVER_FIVEM).toString();
   const URL_INFO_REDM = new URL('/info.json', URL_SERVER_REDM).toString();
   const MAX_PLAYERS_FIVEM = config.MAX_PLAYERS_FIVEM;
