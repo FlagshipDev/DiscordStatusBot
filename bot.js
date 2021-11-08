@@ -180,7 +180,7 @@ exports.start = function() {
   bot.on('ready',() => {
     log(LOG_LEVELS.INFO,'Started...');
     bot.user.setActivity('Programando',{'url':'https://www.twitch.tv/theflagship','type':'STREAMING'});
-    bot.setInterval(updateMessage, UPDATE_TIME);
+    //bot.setInterval(updateMessage, UPDATE_TIME);
   });
 
   function checkLoop() {
