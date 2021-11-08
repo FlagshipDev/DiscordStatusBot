@@ -64,7 +64,7 @@ exports.start = function() {
   const BOT_TOKEN = config.BOT_TOKEN;
   const CHANNEL_ID = config.CHANNEL_ID;
   const MESSAGE_ID = config.MESSAGE_ID;
-  const UPDATE_TIME = 2500;
+  const UPDATE_TIME = config.UPDATE_TIME;
 
   var TICK_N = 0;
   var MESSAGE;
@@ -216,7 +216,7 @@ exports.start = function() {
     log(LOG_LEVELS.DEBUG,info);
   })
 
-  bot.on('disconnect',(devent,shard) => {
+  /*bot.on('disconnect',(devent,shard) => {
     log(LOG_LEVELS.INFO,'Disconnected');
     checkLoop().then((running) => {
       log(LOG_LEVELS.INFO,`Loop still running: ${running}`);
@@ -235,7 +235,7 @@ exports.start = function() {
     checkLoop().then((running) => {
       log(LOG_LEVELS.INFO,`Loop still running: ${running}`);
     }).catch(console.error);
-  })
+  })*/
   
   bot.login(BOT_TOKEN).then(null).catch(() => {
     log(LOG_LEVELS.ERROR,'Unable to login check your login token');
