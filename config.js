@@ -1,5 +1,4 @@
 const dotenv = require('dotenv')
-
 dotenv.config()
 
 module.exports = {
@@ -10,5 +9,6 @@ module.exports = {
     LOG_LEVEL: process.env.LOG_LEVEL,
     BOT_TOKEN: process.env.BOT_TOKEN,
     CHANNEL_ID: process.env.CHANNEL_ID,
-    MESSAGE_ID: process.env.MESSAGE_ID
+    MESSAGE_ID: process.env.MESSAGE_ID,
+    UPDATE_TIME: process.env.UPDATE_TIME // in ms
 }
