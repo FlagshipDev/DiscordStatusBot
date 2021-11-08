@@ -183,9 +183,6 @@ exports.start = function() {
   bot.on('ready',() => {
     log(LOG_LEVELS.INFO,'Started...');
     bot.user.setActivity('Programando',{'url':'https://www.twitch.tv/theflagship','type':'STREAMING'});
-    bot.generateInvite(['ADMINISTRATOR']).then((link) => {
-      log(LOG_LEVELS.INFO,`Invite URL - ${link}`);
-    }).catch(null);
     bot.setInterval(updateMessage, UPDATE_TIME);
   });
 
