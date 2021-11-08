@@ -1,6 +1,6 @@
 'use strict';
 
-const { Client, Intents } = require('discord.js');
+const Discord = require('discord.js');
 const fetchTimeout = require('fetch-timeout');
 const config = require('./config')
 
