@@ -14,5 +14,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: 22
         script: |
-          cd /root/discordBot
+          cd /root/despiadadosStatusBot
           git pull https://${{secrets.TOKEN}}@github.com/FlagshipDev/despiadadosStatusBot.git
