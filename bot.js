@@ -1,6 +1,5 @@
 'use strict';
 
-const { Client, Intents } = require('discord.js');
 const Discord = require('discord.js');
 const fetchTimeout = require('fetch-timeout');
 const config = require('./config')
@@ -98,9 +97,7 @@ exports.start = function() {
     })
   };
 
-  //const bot = new Discord.Client(BOT_CONFIG);
-
-  const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+  const bot = new Discord.Client(BOT_CONFIG);
 
   const sendOrUpdate = function(embed) {
     if (MESSAGE !== undefined) {
