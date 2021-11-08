@@ -245,7 +245,6 @@ exports.start = function() {
   
   bot.login(BOT_TOKEN).then(null).catch(() => {
     log(LOG_LEVELS.ERROR,'Unable to login check your login token');
-    console.error(e);
     process.exit(1);
   });
 
