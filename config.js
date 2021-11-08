@@ -1,5 +1,4 @@
-const dotenv = require('dotenv')
-dotenv.config()
+require("dotenv").config();
 
 module.exports = {
     URL_SERVER_FIVEM: process.env.URL_SERVER_FIVEM,
