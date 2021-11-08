@@ -164,7 +164,7 @@ exports.start = function() {
       .addField('GTA V',':x: Offline',true)
       .addField('Jugadores en línea','?\n\u200b\n',true)
       .addField('\u200b','\u200b\n\u200b\n',true) 
-      .addField('Red Dead Redemption',':white_check_mark: Online',true)
+      .addField('Red Dead Redemption',config.STATUS_REDM,true)
       .addField('Jugadores en línea',`${playersRedM.length}/${MAX_PLAYERS_REDM}\n\u200b\n`,true)
       .addField('\u200b','\u200b\n\u200b\n',true);
       sendOrUpdate(embed);
@@ -174,7 +174,7 @@ exports.start = function() {
   const offlineRedm = function() {
     getPlayersFiveM().then((playersFiveM) => {
       let embed = UpdateEmbed()
-      .addField('GTA V',':white_check_mark: Online',true)
+      .addField('GTA V',config.STATUS_FIVEM,true)
       .addField('Jugadores en línea',`${playersFiveM.length}/${MAX_PLAYERS_FIVEM}\n\u200b\n`,true)
       .addField('\u200b','\u200b\n\u200b\n',true) 
       .addField('Red Dead Redemption',':x: Offline',true)
@@ -188,10 +188,10 @@ exports.start = function() {
     getPlayersRedM().then((playersRedM) => {
       getPlayersFiveM().then((playersFiveM) => {
         let embed = UpdateEmbed()
-        .addField('GTA V',':white_check_mark: Online',true)
+        .addField('GTA V', config.STATUS_FIVEM,true)
         .addField('Jugadores en línea',`${playersFiveM.length}/${MAX_PLAYERS_FIVEM}\n\u200b\n`,true)
         .addField('\u200b','\u200b\n\u200b\n',true) 
-        .addField('Red Dead Redemption',':white_check_mark: Online',true)
+        .addField('Red Dead Redemption',config.STATUS_REDM,true)
         .addField('Jugadores en línea',`${playersRedM.length}/${MAX_PLAYERS_REDM}\n\u200b\n`,true)
         .addField('\u200b','\u200b\n\u200b\n',true);
         sendOrUpdate(embed);

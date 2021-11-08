@@ -1,6 +1,8 @@
 require("dotenv").config();
 
 module.exports = {
+    STATUS_FIVEM: process.env.STATUS_FIVEM,
+    STATUS_REDM: process.env.STATUS_REDM,
     URL_SERVER_FIVEM: process.env.URL_SERVER_FIVEM,
     URL_SERVER_REDM: process.env.URL_SERVER_REDM,
     MAX_PLAYERS_FIVEM: process.env.MAX_PLAYERS_FIVEM,
