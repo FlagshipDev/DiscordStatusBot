@@ -1,4 +1,3 @@
-﻿const setup = require('./setup.js');
-const { start } = require('./bot.js');
+﻿const { start } = require('./bot.js');
 
 start()
