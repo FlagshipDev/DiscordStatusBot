@@ -2,7 +2,8 @@
 
 const Discord = require('discord.js');
 const fetchTimeout = require('fetch-timeout');
-const config = require('./config')
+const { URL_SERVER_FIVEM } = require('./config');
+const config = require('./config');
 
 if (Discord.version.startsWith('12.')) {
   Discord.RichEmbed = Discord.MessageEmbed;
@@ -143,15 +144,44 @@ exports.start = function() {
     return embed;
   };
 
-  const offline = function() {
+  const offlineBoth = function() {
     log(LOG_LEVELS.SPAM,Array.from(arguments));
-    if (LAST_COUNT !== null) log(LOG_LEVELS.INFO,`Servidor offline ${URL_SERVER} (${URL_PLAYERS} ${URL_INFO})`);
+    if (LAST_COUNT !== null) log(LOG_LEVELS.INFO,`Servidor offline ${URL_SERVER_FIVEM} (${URL_PLAYERS_FIVEM})`);
     let embed = UpdateEmbed()
-    .setColor(0xff0000)
-    .addField('Estado del servidor',':x: Offline',true)
-    .addField('Jugadores en línea','?\n\u200b\n',true);
+    .addField('GTA V',':x: Offline',true)
+    .addField('Jugadores en línea','?\n\u200b\n',true)
+    .addField('\u200b','\u200b\n\u200b\n',true) 
+    .addField('Red Dead Redemption',':x: Offline',true)
+    .addField('Jugadores en línea','?\n\u200b\n',true)
+    .addField('\u200b','\u200b\n\u200b\n',true);
     sendOrUpdate(embed);
     LAST_COUNT = null;
+  }
+
+  const offlineFivem = function() {
+    getPlayersRedM().then((playersRedM) => {
+      let embed = UpdateEmbed()
+      .addField('GTA V',':x: Offline',true)
+      .addField('Jugadores en línea','?\n\u200b\n',true)
+      .addField('\u200b','\u200b\n\u200b\n',true) 
+      .addField('Red Dead Redemption',':white_check_mark: Online',true)
+      .addField('Jugadores en línea',`${playersRedM.length}/${MAX_PLAYERS_REDM}\n\u200b\n`,true)
+      .addField('\u200b','\u200b\n\u200b\n',true);
+      sendOrUpdate(embed);
+    }).catch(offlineBoth);
+  }
+
+  const offlineRedm = function() {
+    getPlayersFiveM().then((playersFiveM) => {
+      let embed = UpdateEmbed()
+      .addField('GTA V',':white_check_mark: Online',true)
+      .addField('Jugadores en línea',`${playersFiveM.length}/${MAX_PLAYERS_FIVEM}\n\u200b\n`,true)
+      .addField('\u200b','\u200b\n\u200b\n',true) 
+      .addField('Red Dead Redemption',':x: Offline',true)
+      .addField('Jugadores en línea','?\n\u200b\n',true)
+      .addField('\u200b','\u200b\n\u200b\n',true);
+      sendOrUpdate(embed);
+    }).catch(offlineBoth);
   };
 
   const updateMessage = function() {
@@ -165,8 +195,8 @@ exports.start = function() {
         .addField('Jugadores en línea',`${playersRedM.length}/${MAX_PLAYERS_REDM}\n\u200b\n`,true)
         .addField('\u200b','\u200b\n\u200b\n',true);
         sendOrUpdate(embed);
-      }).catch(offline);
-    }).catch(offline);
+      }).catch(offlineFivem);
+    }).catch(offlineRedm);
     TICK_N++;
     if (TICK_N >= TICK_MAX) {
       TICK_N = 0;
@@ -180,7 +210,7 @@ exports.start = function() {
   bot.on('ready',() => {
     log(LOG_LEVELS.INFO,'Started...');
     bot.user.setActivity('Programando',{'url':'https://www.twitch.tv/theflagship','type':'STREAMING'});
-    //bot.setInterval(updateMessage, UPDATE_TIME);
+    bot.setInterval(updateMessage, UPDATE_TIME);
   });
 
   function checkLoop() {
@@ -216,7 +246,7 @@ exports.start = function() {
     log(LOG_LEVELS.DEBUG,info);
   })
 
-  /*bot.on('disconnect',(devent,shard) => {
+  bot.on('disconnect',(devent,shard) => {
     log(LOG_LEVELS.INFO,'Disconnected');
     checkLoop().then((running) => {
       log(LOG_LEVELS.INFO,`Loop still running: ${running}`);
@@ -235,7 +265,7 @@ exports.start = function() {
     checkLoop().then((running) => {
       log(LOG_LEVELS.INFO,`Loop still running: ${running}`);
     }).catch(console.error);
-  })*/
+  })
   
   bot.login(BOT_TOKEN).then(null).catch(() => {
     log(LOG_LEVELS.ERROR,'Unable to login check your login token');
